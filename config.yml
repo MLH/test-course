@@ -1,17 +1,17 @@
-title: test-course
-tagline: A brand new course on Learning Lab
-description: Just a test course
+title: Intro to Node.js & Express
+tagline: Create your first webapp in minutes
+description: Test course ✨
 template:
   repo: test-course-template
-  name: test-course
+  name: localhost-course
+  description: localhost.mlh.io
 before:
   - type: createIssue
-    title: Welcome!
+    title: Welcome to LocalHost!
     body: new-issue.md
 steps:
   - title: First step
     description: The first step in your course
-    event: issues.assigned
+    event: check_run.completed
     link: '{{ repoUrl }}'
-    actions:
-      - type: closeIssue
+    actions: []
