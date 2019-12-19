@@ -9,9 +9,41 @@ before:
   - type: createIssue
     title: Welcome to LocalHost!
     body: new-issue.md
+    action_id: starter_issue
+  - type: assignRegistrant
+    issue: '%actions.starter_issue.data.number%'
 steps:
-  - title: First step
-    description: The first step in your course
-    event: check_run.completed
+  - title: Oh no! Failing tests!
+    description: 'Our tests are failing, whatever could be the matter?!'
+    event: check_suite.completed
     link: '{{ repoUrl }}'
-    actions: []
+    actions:
+      - type: gate
+        gates:
+          - left: '%payload.check_suite.conclusion%'
+            operator: ===
+            right: failure
+          - left: '%payload.check_suite.head_sha'
+            operator: ===
+            right: 524d68b11c7c5c1779241a419ef92d8f148c8b68
+        every: true
+      - type: respond
+        issue: '%actions.starter_issue.data.number%'
+        with: failing-test.md
+    video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
+  - title: Fixing the test
+    actions:
+      - type: gate
+        gates:
+          - left: '%payload.check_run.conclusion%'
+            operator: ===
+            right: success
+          - left: '%payload.check_run.name'
+            operator: ===
+            right: 'npm install, build, and test'
+        every: true
+      - type: respond
+        with: passing-test.md
+        issue: '%actions.starter_issue.data.number%'
+    description: Can you fix the problem?
+    event: check_run.completed
