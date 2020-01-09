@@ -23,7 +23,7 @@ steps:
       - type: gate
         left: '%payload.issue.number%'
         operator: ===
-        right: '%actions.starter_issue.data.number%'
+        right: 1
       - type: respond
         with: setup.md
         action_id: setup_issue
