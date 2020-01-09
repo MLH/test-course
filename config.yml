@@ -17,12 +17,16 @@ before:
 steps:
   - title: Setup
     description: Setting up your LocalHost course
-    event: issues.opened
+    event: issue_comment.created
     link: '{{ repoUrl }}/issues/1'
     actions:
+      - type: gate
+        left: '%payload.issue.number%'
+        operator: ===
+        right: '%actions.starter_issue.data.number%'
       - type: respond
-        issue: '%actions.starter_issue.data.number%'
         with: setup.md
+        action_id: setup_issue
   - title: Oh no! Failing tests!
     description: 'Our tests are failing, whatever could be the matter?!'
     event: check_suite.completed
