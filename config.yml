@@ -21,11 +21,9 @@ steps:
     link: '{{ repoUrl }}/issues/1'
     actions:
       - type: gate
-        gates:
-          - left: '%payload.issue.number%'
-            operator: ===
-            right: '%actions.starter_issue.data.number%'
-        every: true
+        left: '%payload.issue.number%'
+        right: actions.starter_issue.data.number
+        operator: ===
       - type: respond
         issue: '%actions.starter_issue.data.number%'
         with: setup.md
