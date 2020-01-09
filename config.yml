@@ -13,6 +13,20 @@ before:
   - type: assignRegistrant
     issue: '%actions.starter_issue.data.number%'
 steps:
+  - title: Setup
+    description: Setting up your LocalHost course
+    event: issues.opened
+    actions:
+      - type: gate
+        gates:
+          - left: '%payload.issue.number%'
+            operator: ===
+            right: '%actions.starter_issue.data.number%'
+      - type: createIssue
+        title: Setup your repository
+        body: setup.md
+        action_id: setup_issue
+    link: '''{{ repoUrl }}/issues/1'''
   - title: Oh no! Failing tests!
     description: 'Our tests are failing, whatever could be the matter?!'
     event: check_suite.completed
