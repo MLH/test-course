@@ -32,6 +32,8 @@ steps:
     event: check_suite.completed
     link: '{{ repoUrl }}'
     actions:
+      - type: createIssue
+        title: Step 2 log
       - type: gate
         gates:
           - left: '%payload.check_suite.conclusion%'
@@ -39,7 +41,7 @@ steps:
             right: failure
           - left: '%payload.check_suite.name%'
             operator: ===
-            right: 'Node CI'
+            right: Node CI
         every: true
       - type: respond
         issue: '%actions.starter_issue.data.number%'
