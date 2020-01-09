@@ -12,21 +12,21 @@ before:
     action_id: starter_issue
   - type: assignRegistrant
     issue: '%actions.starter_issue.data.number%'
+    data:
+      repoUrl: '%payload.repository.html_url%'
 steps:
   - title: Setup
     description: Setting up your LocalHost course
     event: issues.opened
+    link: '{{ repoUrl }}/issues/1'
     actions:
       - type: gate
         gates:
           - left: '%payload.issue.number%'
             operator: ===
             right: '%actions.starter_issue.data.number%'
-      - type: createIssue
-        title: Setup your repository
-        body: setup.md
-        action_id: setup_issue
-    link: '''{{ repoUrl }}/issues/1'''
+      - type: respond
+        with: setup.md
   - title: Oh no! Failing tests!
     description: 'Our tests are failing, whatever could be the matter?!'
     event: check_suite.completed
@@ -46,6 +46,8 @@ steps:
         with: failing-test.md
     video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
   - title: Fixing the test
+    description: Can you fix the problem?
+    event: check_run.completed
     actions:
       - type: gate
         gates:
@@ -59,5 +61,3 @@ steps:
       - type: respond
         with: passing-test.md
         issue: '%actions.starter_issue.data.number%'
-    description: Can you fix the problem?
-    event: check_run.completed
