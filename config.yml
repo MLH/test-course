@@ -22,8 +22,8 @@ steps:
     actions:
       - type: gate
         left: '%payload.issue.number%'
-        operator: ==
-        right: '%actions.starter_issue.data.number%'
+        operator: ===
+        right: 1
       - type: respond
         with: setup.md
         action_id: setup_issue
@@ -37,9 +37,9 @@ steps:
           - left: '%payload.check_suite.conclusion%'
             operator: ===
             right: failure
-          - left: '%payload.check_suite.head_sha'
+          - left: '%payload.check_suite.name%'
             operator: ===
-            right: 524d68b11c7c5c1779241a419ef92d8f148c8b68
+            right: 'Node CI'
         every: true
       - type: respond
         issue: '%actions.starter_issue.data.number%'
