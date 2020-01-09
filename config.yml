@@ -20,10 +20,6 @@ steps:
     event: issue_comment.created
     link: '{{ repoUrl }}/issues/1'
     actions:
-      - type: gate
-        left: '%payload.issue.number%'
-        operator: ===
-        right: '%actions.starter_issue.data.number%'
       - type: respond
         with: setup.md
         action_id: setup_issue
