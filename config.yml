@@ -10,10 +10,10 @@ before:
     title: Welcome to LocalHost!
     body: new-issue.md
     action_id: starter_issue
-  - type: assignRegistrant
-    issue: '%actions.starter_issue.data.number%'
     data:
       repoUrl: '%payload.repository.html_url%'
+  - type: assignRegistrant
+    issue: '%actions.starter_issue.data.number%'
 steps:
   - title: Setup
     description: Setting up your LocalHost course
