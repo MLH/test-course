@@ -25,7 +25,9 @@ steps:
           - left: '%payload.issue.number%'
             operator: ===
             right: '%actions.starter_issue.data.number%'
+        every: true
       - type: respond
+        issue: '%actions.starter_issue.data.number%'
         with: setup.md
   - title: Oh no! Failing tests!
     description: 'Our tests are failing, whatever could be the matter?!'
