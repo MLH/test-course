@@ -31,14 +31,11 @@ steps:
     description: 'Our tests are failing, whatever could be the matter?!'
     event: check_suite.completed
     link: '{{ repoUrl }}'
-    actions:
-      - type: createIssue
-        title: Step 2 log
-        body: step_debug.md
-        data: 
-          log1: '%payload.check_suite.conclusion%'
-          log2: '%payload.check_suite.name%'
     video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
+    actions:
+      - type: respond
+        with: failing-test.md
+        issue: '1'
   - title: Fixing the test
     description: Can you fix the problem?
     event: check_run.completed
