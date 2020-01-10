@@ -33,7 +33,11 @@ steps:
     link: '{{ repoUrl }}'
     actions:
       - type: createIssue
-        title: Step 2 log
+        issue: Step 2 log
+        with: step_debug.md
+        data: 
+          log1: '%payload.check_suite.conclusion%'
+          log2: '%payload.check_suite.name%'
       - type: gate
         gates:
           - left: '%payload.check_suite.conclusion%'
