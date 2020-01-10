@@ -33,8 +33,8 @@ steps:
     link: '{{ repoUrl }}'
     actions:
       - type: createIssue
-        issue: Step 2 log
-        with: step_debug.md
+        title: Step 2 log
+        body: step_debug.md
         data: 
           log1: '%payload.check_suite.conclusion%'
           log2: '%payload.check_suite.name%'
