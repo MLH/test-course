@@ -38,18 +38,6 @@ steps:
         data: 
           log1: '%payload.check_suite.conclusion%'
           log2: '%payload.check_suite.name%'
-      - type: gate
-        gates:
-          - left: '%payload.check_suite.conclusion%'
-            operator: ===
-            right: failure
-          - left: '%payload.check_suite.name%'
-            operator: ===
-            right: Node CI
-        every: true
-      - type: respond
-        issue: '%actions.starter_issue.data.number%'
-        with: failing-test.md
     video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
   - title: Fixing the test
     description: Can you fix the problem?
