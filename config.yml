@@ -35,6 +35,7 @@ steps:
     actions:
       - type: createIssue
         title: Failing tests
+        body: failing-tests.md
   - title: Fixing the test
     description: Can you fix the problem?
     event: check_run.completed
