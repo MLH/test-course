@@ -29,7 +29,7 @@ steps:
         action_id: setup_issue
   - title: Oh no! Failing tests!
     description: 'Our tests are failing, whatever could be the matter?!'
-    event: check_suite.completed
+    event: check_run.completed
     link: '{{ repoUrl }}'
     video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
     actions:
