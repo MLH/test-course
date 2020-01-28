@@ -35,7 +35,7 @@ steps:
     actions:
       - type: respond
         with: failing-test.md
-        issue: '1'
+        issue: 1
   - title: Fixing the test
     description: Can you fix the problem?
     event: check_run.completed
