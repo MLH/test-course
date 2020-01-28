@@ -15,6 +15,15 @@ before:
   - type: assignRegistrant
     issue: '%actions.starter_issue.data.number%'
 steps:
+  - title: Oh no! Failing tests!
+    description: 'Our tests are failing, whatever could be the matter?!'
+    event: check_run.completed
+    link: '{{ repoUrl }}'
+    video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
+    actions:
+      - type: respond
+        with: failing-test.md
+        issue: 1
   - title: Setup
     description: Setting up your LocalHost course
     event: issue_comment.created
@@ -27,15 +36,6 @@ steps:
       - type: respond
         with: setup.md
         action_id: setup_issue
-  - title: Oh no! Failing tests!
-    description: 'Our tests are failing, whatever could be the matter?!'
-    event: check_run.completed
-    link: '{{ repoUrl }}'
-    video: 'https://www.youtube.com/embed/h2eWfvcAOTI'
-    actions:
-      - type: respond
-        with: failing-test.md
-        issue: 1
   - title: Fixing the test
     description: Can you fix the problem?
     event: check_run.completed
